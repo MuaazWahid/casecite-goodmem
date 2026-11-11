@@ -80,6 +80,7 @@ func New(cfg Config, db *sql.DB, static fs.FS, log *slog.Logger) *Server {
 	})
 	s.mux.HandleFunc("GET /health", s.health)
 	s.mux.HandleFunc("GET /ready", s.health)
+	s.mux.HandleFunc("GET /healthz", s.health)
 	if !cfg.PublicDemo {
 		s.api("GET /metrics", true, s.metrics)
 	}
